@@ -1,0 +1,17 @@
+.js-hue-room i {
+  cursor: pointer;
+}
+
+.hue-brightness {
+  width: 60px;
+}
+
+.hue-brightness span {
+  cursor: pointer;
+  margin-top: 38px;
+  margin-left: 5px;
+}
+
+.js-hue-scenes .small-buttons {
+  margin-bottom: 1em;
+}
