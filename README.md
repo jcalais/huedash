@@ -1,5 +1,7 @@
-# huedash
-Philips Hue dashboard to be run on a Raspberry pi.
+# Huedash
+Philips Hue dashboard to be run on a Raspberry pi or similar.
+
+Using Python, Flask, Bootstrap 3, jQuery, noUiSlider, AdminLTE2 theme.
 
 ## Getting started
 One prerequisite is having a conf.json file. For your convenience I have left mine in. It contains my super secret Hue App Id assigned by the Hue hub. I don't think there's much you can do to abuse it.
@@ -21,6 +23,8 @@ The Hue Dashboard runs on port 80, which on a Unix-system (such as a Raspberry) 
 > sudo python hue.py
 
 This should of course be executed in the folder with hue.py.
+
+If you don't want to use port 80 (and sudo), just edit hue.py's last line.
 
 ## Navigate to it
 
@@ -50,3 +54,16 @@ This would create a Scene called "Romantic dinner" containing lights 1 and 2 wit
 ### Deleting scenes
 
 When you create a scene you dislike, you unfortunately have to remove it yourself. In the future I might add a scene creation tool, but until then, just issue the api url api/[username]/scenes/sceneId and press the DELETE-button in the Api Debug tool.
+
+## Making your Hue Hub ip static
+
+In order to make your ip static, follow these instructions carefully:
+
+In your Hue Api debug tool, enter the following:
+
+> Url: api/[username]/config
+
+> Body: {"ipaddress":"10.0.0.101", "dhcp":false, "netmask": "255.255.255.0", "gateway": "10.0.0.1" } 
+
+Obviously you need to carefully modify the parameters above to your environment.
+
