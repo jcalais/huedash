@@ -8,10 +8,10 @@ Follow these steps to fulfill all prerequisites:
 
 * Install **python-pip** and **flask** on your Raspberry or similar computer.
 * Find out your Hue Hub ip address. Mine is 10.0.0.101, because that is what I've set it to. One easy way to find it is to log on to your router and view all attached devices. Philips hue doesn't have wi-fi, so you'd find it under wired devices.
-* Once you know your Hue ip address, verify it works by directing your browser to http://<bridge ip address>/debug/clip.html. If you see the Debug Api tool, you're good to go!
-* Fill in the word "api" in the URL: field of the debug interface and {"devicetype":"huedash#iphone peter"} in the Message Body field and press the "post" -button. This sends a POST request to the Hue Hub to allow a new app access to the hub.
+* Once you know your Hue ip address, verify it works by directing your browser to http://[bridge ip address]/debug/clip.html. If you see the Debug Api tool, you're good to go!
+* Fill in the word "api" in the URL: field of the debug interface and {"devicetype":"huedash#iphone peter"} in the Message Body field and press the POST -button in the Api debug tool. This sends a POST request to the Hue Hub to allow a new app access to the hub.
 * This is where the Hue Hub says you haven't pressed the link button. Go on and run to your Hue Hub and press the button and return to your computer.
-* Press the "post" -button once again and you should get a response with "success" and your username. Copy the username!
+* Press the POST -button once again and you should get a response with "success" and your username. **Copy the username**!
 * Now change conf.json to include your Device name, your IP and your new username.
 
 ## Start the dashboard
@@ -24,5 +24,29 @@ This should of course be executed in the folder with hue.py.
 
 ## Navigate to it
 
-The final step is to fire up your favorite browser and direct it to http://<your raspberry ip>
+The final step is to fire up your favorite browser and direct it to http://[your raspberry ip]
 
+This is more or less what you should see (with your lights):
+
+!["Screenshot of Huedash"](http://i.imgur.com/XFo6KSU.png "Hue dash")
+
+!["Mobile screenshot of Huedash"](http://i.imgur.com/WmT2oxp.png "Hue dash mobile")
+
+## Scenes
+
+In order to see the scenes as in the screenshot, you need to add them with the username you just created as the owner.
+
+The easiest way is to just use your Api Debug tool (that we discussed above). 
+
+* First set the lights you wish to make a scene for to the correct brightness and state (on/off).
+* Then issue the following URL / Body and press the PUT-button in the Api debug tool:
+
+> Url: api/[username]/scenes
+
+> Body: {"name":"Romantic dinner", "lights":["1","2"], "recycle":false, "transitiontime":50}
+
+This would create a Scene called "Romantic dinner" containing lights 1 and 2 with a transitiontime of 5 seconds.
+
+### Deleting scenes
+
+When you create a scene you dislike, you unfortunately have to remove it yourself. In the future I might add a scene creation tool, but until then, just issue the api url api/[username]/scenes/sceneId and press the DELETE-button in the Api Debug tool.
