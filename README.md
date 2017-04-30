@@ -71,6 +71,6 @@ Obviously you need to carefully modify the parameters above to your environment.
 
 The full Philips Hue Api documentation can be found at
 
-> https://www.developers.meethue.com/documentation/configuration-api
+> https://www.developers.meethue.com/philips-hue-api
 
 
