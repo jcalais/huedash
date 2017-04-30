@@ -43,7 +43,7 @@ In order to see the scenes as in the screenshot, you need to add them with the u
 The easiest way is to just use your Api Debug tool (that we discussed above). 
 
 * First set the lights you wish to make a scene for to the correct brightness and state (on/off).
-* Then issue the following URL / Body and press the PUT-button in the Api debug tool:
+* Then issue the following URL / Body and press the POST-button in the Api debug tool:
 
 > Url: api/[username]/scenes
 
