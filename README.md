@@ -65,5 +65,5 @@ In your Hue Api debug tool, enter the following:
 
 > Body: {"ipaddress":"10.0.0.101", "dhcp":false, "netmask": "255.255.255.0", "gateway": "10.0.0.1" } 
 
-Obviously you need to carefully modify the parameters above to your environment.
+Obviously you need to carefully modify the parameters above to your environment. When you're confident your params are correct, go ahead and press the PUT-button in the Api Debug tool. Your Hue ip should change immediately. You can test it by navigating to https://[new ip you just specified].
 
