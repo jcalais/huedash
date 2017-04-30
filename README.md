@@ -67,3 +67,10 @@ In your Hue Api debug tool, enter the following:
 
 Obviously you need to carefully modify the parameters above to your environment. When you're confident your params are correct, go ahead and press the PUT-button in the Api Debug tool. Your Hue ip should change immediately. You can test it by navigating to https://[new ip you just specified].
 
+## Read more
+
+The full Philips Hue Api documentation can be found at
+
+> https://www.developers.meethue.com/documentation/configuration-api
+
+
