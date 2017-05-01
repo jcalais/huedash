@@ -36,6 +36,8 @@ This is more or less what you should see (with your lights):
 
 !["Mobile screenshot of Huedash"](http://i.imgur.com/WmT2oxp.png "Hue dash mobile")
 
+_The buttons at the top are for activating scenes (such as "the kids have gone to bed") and the tabs are rooms. "Vardagsrum" = living room. The topmost slider in every room affects all lights in the room. A yellow light in a tab means all lights are on. A blue (or teal or whatever) light means some lights are on._
+
 ## Scenes
 
 In order to see the scenes as in the screenshot, you need to add them with the username you just created as the owner.
