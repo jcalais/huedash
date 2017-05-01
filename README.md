@@ -67,6 +67,12 @@ In your Hue Api debug tool, enter the following:
 
 Obviously you need to carefully modify the parameters above to your environment. When you're confident your params are correct, go ahead and press the PUT-button in the Api Debug tool. Your Hue ip should change immediately. You can test it by navigating to https://[new ip you just specified].
 
+## Known issues
+
+* At the moment, the Hue Api calls are made using javascript between client and Hub. This means it won't work outside of your local network. In the future I plan to have all communication happen between the Pi and the Hue Hub, which will make it work from anywhere you can reach the Pi.
+* Light states are not replicated when using scenes, so when you press a scene button, the interface might say lights are still on, even though the scene turned them off. This can be fixed by refreshing and in the future I will probably add some kind of light state refresh on tab change.
+* Please note that sliding a light's brightness slider to zero doesn't mean it's off. It means it's at its lowest visible brightness. The brightness works independently of the on/off state, so a light can be both off and have a brightness of 50% at the same time.
+
 ## Read more
 
 The full Philips Hue Api documentation can be found at
