@@ -6,6 +6,8 @@ Using Python, Flask, Bootstrap 3, jQuery, noUiSlider, AdminLTE2 theme.
 ## Changelog
 2017-08-26: Added rudimentary Hue motion sensor support. This will show up as a temperature and battery percentage on the sensors page.
 
+!["Screenshot of temperature sensors"](http://i.imgur.com/nlANUY4.png "Temperature")
+
 ## Getting started
 One prerequisite is having a conf.json file. For your convenience I have left mine in. It contains my super secret Hue App Id assigned by the Hue hub. I don't think there's much you can do to abuse it.
 
