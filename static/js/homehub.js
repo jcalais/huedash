@@ -1,6 +1,7 @@
 $(function() {
-  $('.js-hue-scenes').initScenes();
+  $('.js-hue-scenes').initHueScenes();
   $('.js-hue-rooms').initHueGroups();
+  $('.js-hue-sensors').initHueSensors();
 });
 
 $.fn.initHueGroups = function() {
@@ -136,7 +137,7 @@ $.fn.setLight = function(origin) {
 /**
  * Retrieves all the scenes from the hue api.
  */
-$.fn.initScenes = function() {
+$.fn.initHueScenes = function() {
   $sceneContainer = $(this);
   $.get(getHueApiBaseUrl() + '/scenes', function(scenes) {
     $.each(scenes, function(sceneId, scene) {
@@ -186,6 +187,29 @@ $.fn.setScene = function() {
   
 };
 
+/**
+ * Inits the sensors.
+ */
+$.fn.initHueSensors = function() {
+  $sensorContainer = $(this);
+  $.get(getHueApiBaseUrl() + '/sensors', function(sensors) {
+    $.each(sensors, function(sensorId, sensor) {
+      switch (sensor.type) {
+        case 'ZLLTemperature':
+          console.log(sensor);
+          $sensorContainer.addSensor(sensorId, sensor);
+        break;
+      }
+    });
+  });
+};
+
+$.fn.addSensor = function(sensordId, sensor) {
+  var $sensor;
+  $sensor = $('<div class="col-lg-3 col-xs-12"><div class="small-box bg-aqua"><div class="inner"><h3>' + getHueTemperature(sensor.state.temperature) + '&deg;C</h3><p>' + sensor.name + '</p><p><small>Battery: ' + sensor.config.battery + '%</small></p></div><div class="icon"><i class="ion ion-thermometer"></i></div></div></div>');
+  $(this).append($sensor);
+};
+
 function getHueApiBaseUrl() {
   var hue_user = getHueUser();
   var hue_ip = $('.js-hue-config').data('hue-ip');
@@ -200,6 +224,11 @@ function getHueUser() {
     return $('.js-hue-config').data('hue-user');
   }
   return false;
+}
+
+function getHueTemperature(temperature) {
+  temperature = temperature / 100;
+  return temperature.toFixed(2);
 }
 
 /**
