@@ -1,0 +1,62 @@
+{% extends "tabletbase.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-9 hue-col hue-left-col">
+    <div class="row hue-grid">
+     <div class="col-sm-4 hue-tile">
+        {% if forecast %}
+        <a href="/tablet" class="tile weather-tile bg-cat-1">
+          <img src="http://symbol.yr.no/grafikk/sym/svg/{{ forecast.symbol }}.svg" />
+          <h2>{{ forecast.temperature }}&deg;C</h2>
+          <span class="description"><span class="ion-paper-airplane"></span> {{ forecast.wind }}m/s <span class="ion-waterdrop"></span> {{ forecast.precipitation }}mm</span>
+        </a>
+        {% endif %}
+      </div>
+      <div class="col-sm-4 hue-tile">
+        <a href="/tablet" class="tile bg-cat-1">
+          <span class="ion-calendar ion"></span>
+          <h2>Kalender</h2>
+        </a>
+      </div>
+      <div class="col-sm-4 hue-tile">
+        <a href="/tablet" class="tile bg-cat-1">
+          <span class="ion-ios-grid-view ion"></span>
+          <h2>Scener</h2>
+        </a>
+      </div>
+    </div>
+    {% for subgroups in groups|batch(3) %}
+    <div class="row hue-grid">
+      {% for group in subgroups %}
+        {% if group.state.all_on %}
+          {% set light_cat = 'on' %}
+        {% elif group.state.any_on %}
+          {% set light_cat = 'onish' %}
+        {% else %}
+          {% set light_cat = 'off' %}
+        {% endif %}
+      <div class="col-sm-4 hue-tile hue-tile-sm" data-id="{{ group.id }}" data-type="group">
+        <a href="/room/{{ group.id }}" class="tile bg-cat-{{ light_cat }}">
+          <span class="ion-ios-lightbulb ion"></span>
+          <h2>{{ group.name }}</h2>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col-sm-3 hue-col hue-right-col">
+    <div class="row">
+      {% for sensor in sensors %}
+      <div class="col-sm-12 hue-tile" data-id="{{ sensor.id }}" data-type="sensor">
+        <a href="/tablet" class="tile bg-cat-2">
+          <span class="ion-thermometer ion"></span>
+          <h2>{{ sensor.state.temperature/100 }}&deg;C</h2>
+          <span class="description">{{ sensor.name }}</span>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

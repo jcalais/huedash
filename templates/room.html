@@ -1,0 +1,49 @@
+{% extends "tabletbase.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-9 hue-col hue-left-col">
+    <div class="row hue-grid">
+     <div class="col-sm-4 hue-tile">
+        <a href="/tablet" class="tile bg-cat-1">
+          <span class="ion-ios-home ion"></span>
+          <h2>Tillbaka</h2>
+        </a>
+      </div>
+      <div class="col-sm-4 hue-tile">
+        {% if group.state.all_on %}
+          {% set light_cat = 'on' %}
+        {% elif group.state.any_on %}
+          {% set light_cat = 'onish' %}
+        {% else %}
+          {% set light_cat = 'off' %}
+        {% endif %}
+        <a href="/tablet" class="tile bg-cat-{{ light_cat }}">
+          <span class="ion-ios-keypad ion"></span>
+          <h2>{{ group.name }}</h2>
+        </a>
+      </div>
+      <div class="col-sm-4 hue-tile">
+        <a href="/tablet" class="tile bg-cat-1">
+          <span class="ion-android-color-palette ion"></span>
+          <h2>Färger</h2>
+        </a>
+      </div>
+    </div>
+    {% for light_group in lights|batch(3) %}
+    <div class="row hue-grid">
+      {% for light in light_group %}
+      <div class="col-sm-4 hue-tile hue-tile{{ '-sm' if lights|length > 3 else '' }}" data-id="{{ light.id }}" data-type="light">
+        <a href="#" class="tile bg-cat-{{ 'on' if light.state.on else 'off' }}">
+          <span class="ion-ios-lightbulb ion"></span>
+          <h2>{{ light.name }}</h2>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col-sm-3 hue-col hue-right-col">
+    <div id="hue-big-slider" class="js-hue-slider hue-big-slider"></div>
+  </div>
+</div>
+{% endblock %}

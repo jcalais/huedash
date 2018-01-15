@@ -1,0 +1,5 @@
+.js-hue-slider .ui-slider-handle,
+.js-hue-slider .ui-slider-range,
+.js-hue-slider .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line,
+.js-hue-slider .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
+  background-color: #f27793; }

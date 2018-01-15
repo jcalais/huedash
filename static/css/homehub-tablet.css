@@ -1,0 +1,131 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+body {
+  -ms-overflow-style:none;
+}
+
+body {
+  background-color:  black;
+  oberflow: hidden;
+}
+
+.hue-col, .hue-tile {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.hue-right-col {
+  padding-left: 15px;
+}
+
+/* Tile categories */
+.bg-cat-0 {
+  background-color: #777;
+}
+
+.bg-cat-1 {
+  background-color: #4daf7b;
+}
+
+.bg-cat-2 {
+  background-color: #0a5bc4;
+}
+
+.bg-cat-on {
+  background-color: #F1C40F;
+}
+
+.bg-cat-off {
+  background-color: #777;
+}
+
+.bg-cat-onish {
+  background-color: #E67E22;
+}
+
+.hue-header {
+  padding: 5px 20px;
+  margin-bottom: 15px;
+  color: white;
+  font-size: 1.4em;
+}
+
+/* Tiles */
+.tile {
+  box-sizing: border-box;
+  color: white;
+  display: inline-block;
+  height: 195px;
+  margin-bottom: 1em;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.weather-tile {
+  padding-top: 10px;
+}
+
+.tile:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.tile h2 {
+  font-size: 2em;
+  margin: 0.2em 0;
+}
+
+.tile .ion {
+  margin-top: 10px;
+  font-size: 5em;
+}
+
+.tile .description {
+  font-size: 1.4em;
+}
+
+.weather-tile .description {
+  font-size: 1.2em;
+}
+
+/* Small tiles */
+.hue-tile-sm .tile {
+  height: 91px;
+  padding: 10px 20px;
+  margin-bottom: 1em;
+}
+
+.hue-tile-sm .tile .ion {
+  margin-top: 0;
+  font-size: 3em;
+}
+
+.hue-tile-sm .tile h2 {
+  font-size: 1.5em;
+}
+
+/* Slider */
+.hue-big-slider {
+  height: 400px;
+  width: 120px;
+}
+
+.hue-big-slider .noUi-handle {
+  width: 130px;
+}
+
+.hue-big-slider .noUi-connect {
+  background-color: #4daf7b;
+}
+
+.hue-big-slider .noUi-tooltip {
+  left: 110%;
+  right: auto;
+}
