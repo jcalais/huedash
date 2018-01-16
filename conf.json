@@ -2,5 +2,5 @@
   "devicetype" : "myhue#raspberrypi jayjay",
   "username": "hkdOmVS6foFF35dfFejEPnhKLWa-ZFDiPjz9gZjv",
   "ip": "10.0.0.101",
-  "yr_url": "https://yr.no/place/Finland/Southern_Finland/Vantaa/varsel.xml"
+  "yr_url": "/home/pi/web/hue/varsel.xml"
 }

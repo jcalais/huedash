@@ -17,7 +17,7 @@
         {% else %}
           {% set light_cat = 'off' %}
         {% endif %}
-        <a href="/tablet" class="tile bg-cat-{{ light_cat }}">
+        <a href="#" class="tile bg-cat-{{ light_cat }}" data-id="{{ group.id }}" data-type="group" data-state="{{ 'on' if group.state.all_on else 'off' }}">
           <span class="ion-ios-keypad ion"></span>
           <h2>{{ group.name }}</h2>
         </a>
@@ -32,8 +32,8 @@
     {% for light_group in lights|batch(3) %}
     <div class="row hue-grid">
       {% for light in light_group %}
-      <div class="col-sm-4 hue-tile hue-tile{{ '-sm' if lights|length > 3 else '' }}" data-id="{{ light.id }}" data-type="light">
-        <a href="#" class="tile bg-cat-{{ 'on' if light.state.on else 'off' }}">
+      <div class="col-sm-4 hue-tile hue-tile{{ '-sm' if lights|length > 3 else '' }}">
+        <a href="#" class="tile bg-cat-{{ 'on' if light.state.on else 'off' }}" data-id="{{ light.id }}" data-type="light" data-state="{{ 'on' if light.state.on else 'off' }}">
           <span class="ion-ios-lightbulb ion"></span>
           <h2>{{ light.name }}</h2>
         </a>
@@ -43,7 +43,7 @@
     {% endfor %}
   </div>
   <div class="col-sm-3 hue-col hue-right-col">
-    <div id="hue-big-slider" class="js-hue-slider hue-big-slider"></div>
+    <div id="hue-big-slider" class="js-hue-big-slider hue-big-slider" data-val="{{ group.action.bri }}"></div>
   </div>
 </div>
 {% endblock %}

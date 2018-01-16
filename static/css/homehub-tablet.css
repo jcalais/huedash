@@ -91,6 +91,10 @@ body {
   font-size: 1.4em;
 }
 
+.weather-tile img {
+  height: 100px;
+}
+
 .weather-tile .description {
   font-size: 1.2em;
 }

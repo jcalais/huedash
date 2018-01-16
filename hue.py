@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 import json
 import requests
 import xml.etree.ElementTree as ET
@@ -42,6 +42,11 @@ def sensors():
   hueConf = getHueConf()
   return render_template('sensors.html', hue_username=hueConf['hue_username'], hue_ip=hueConf['hue_ip'])
 
+@app.route("/hueapigateway", methods=['POST'])
+def hueApiGateway():
+  req = request.form
+  return jsonify(hueRequest(req['endpoint'], json.loads(req['payload'])))
+
 # Get all lights in a specific room
 def getLights(room_id):
   room_data = hueRequest('/groups/' + room_id)
@@ -59,15 +64,14 @@ def getLights(room_id):
 # Get forecast from yr.no
 def getForecast():
   hueConf = getHueConf()
-  #response = requests.get(hueConf['yr_url'])
-  #weather = ET.fromstring(response.content)
-  #forecast = weather.find("forecast").find('tabular').find('time');
-  #return {
-    #'symbol': forecast.find('symbol').get('var'),
-    #'precipitation': forecast.find('precipitation').get('value'),
-    #'temperature': forecast.find('temperature').get('value'),
-    #'wind': forecast.find('windSpeed').get('mps')
-  #}
+  weather = ET.parse(hueConf['yr_url'])
+  forecast = weather.find("forecast").find('tabular').find('time');
+  return {
+    'symbol': forecast.find('symbol').get('var'),
+    'precipitation': forecast.find('precipitation').get('value'),
+    'temperature': forecast.find('temperature').get('value'),
+    'wind': forecast.find('windSpeed').get('mps')
+  }
   return {
     'symbol': '04',
     'precipitation': '1.2',
@@ -100,12 +104,16 @@ def getSensors(sensorType):
   return ret
 
 # Perform an arbitrary request against the hue api.
-def hueRequest(endpoint):
+def hueRequest(endpoint, payload = None):
   hueConf = getHueConf()
   hueBaseUrl = 'http://' + hueConf['hue_ip'] + '/api/' + hueConf['hue_username']
   hueRequestUrl = hueBaseUrl + endpoint
-  response = requests.get(hueRequestUrl)
-  return json.loads(response.content)
+  if payload == None:
+    response = requests.get(hueRequestUrl)
+  else:
+    # We are assuming put method if there is a payload.
+    response = requests.put(hueRequestUrl, json=payload)
+  return response.json()
 
 # Fetch config from file.
 def getHueConf():
