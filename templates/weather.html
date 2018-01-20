@@ -1,0 +1,18 @@
+{% extends "tabletbase.html" %}
+{% block content %}
+<div class="row">
+  {% for forecast in forecasts %}
+  <div class="col-sm-2 hue-tile weather-col">
+    <a href="/tablet" class="tile weather-tile bg-cat-2">
+      <p class="time"><span class="ion-android-time"></span> {{ forecast.time }}</p>
+      <img src="https://www.yr.no/grafikk/sym/v2016/svg/{{ forecast.symbol }}.svg" />
+      <h2>{{ forecast.temperature }}&deg;C</h2>
+      <p class="description"><span class="ion-waterdrop"></span> {{ forecast.precipitation }} mm</p>
+      <p class="description"><span class="ion-paper-airplane"></span> {{ forecast.wind }} m/s {{ forecast.wind_dir }}</p>
+      <p class="description"><span class="ion-ios-cloud-download"></span> {{ forecast.pressure }} kPa</p>
+      <p class="description verbose">{{ forecast.symbol_name }}, {{ forecast.wind_name }}</p>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

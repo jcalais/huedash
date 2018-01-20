@@ -1,5 +1,6 @@
 {% extends "tabletbase.html" %}
 {% block content %}
+{% include "color-chart.html" %}
 <div class="row">
   <div class="col-sm-9 hue-col hue-left-col">
     <div class="row hue-grid">
@@ -23,7 +24,7 @@
         </a>
       </div>
       <div class="col-sm-4 hue-tile">
-        <a href="/tablet" class="tile bg-cat-1">
+        <a href="#" class="tile bg-cat-1 js-toggle-color">
           <span class="ion-android-color-palette ion"></span>
           <h2>Färger</h2>
         </a>
@@ -33,7 +34,7 @@
     <div class="row hue-grid">
       {% for light in light_group %}
       <div class="col-sm-4 hue-tile hue-tile{{ '-sm' if lights|length > 3 else '' }}">
-        <a href="#" class="tile bg-cat-{{ 'on' if light.state.on else 'off' }}" data-id="{{ light.id }}" data-type="light" data-state="{{ 'on' if light.state.on else 'off' }}">
+        <a href="#" class="tile bg-cat-{{ 'on' if light.state.on else 'off' }}" data-id="{{ light.id }}" data-type="light" data-state="{{ 'on' if light.state.on else 'off' }}" data-bri="{{ light.state.bri }}" data-x="{{ '' if light.state.xy is not defined else light.state.xy[0] }}" data-y="{{ '' if light.state.xy is not defined else light.state.xy[1] }}">
           <span class="ion-ios-lightbulb ion"></span>
           <h2>{{ light.name }}</h2>
         </a>

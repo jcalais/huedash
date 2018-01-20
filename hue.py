@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 import json
 import requests
+import datetime
 import xml.etree.ElementTree as ET
 
 app = Flask(__name__)
@@ -12,19 +13,29 @@ def index():
 
 @app.route("/tablet")
 def tablet():
-  hueConf = getHueConf()
+  forecast = getForecast()
   return render_template(
     'tablet.html', 
-    hue_username=hueConf['hue_username'], 
-    hue_ip=hueConf['hue_ip'], 
     sensors=getSensors('ZLLTemperature'),
     groups=getGroups(),
-    forecast=getForecast()
+    forecast=forecast[0]
   )
 
 @app.route("/scenes")
 def scenes():
-  return render_template('scenes.html', hue_username=hueConf['hue_username'], hue_ip=hueConf['hue_ip'])
+  forecast = getForecast()
+  return render_template(
+    'scenes.html', 
+    scenes=getScenes(),
+    forecast=forecast[0]
+  )
+
+@app.route("/weather")
+def weather():
+  return render_template(
+    'weather.html', 
+    forecasts=getForecast(6)
+  )
 
 @app.route("/room/<roomId>")
 def room(roomId):
@@ -45,7 +56,8 @@ def sensors():
 @app.route("/hueapigateway", methods=['POST'])
 def hueApiGateway():
   req = request.form
-  return jsonify(hueRequest(req['endpoint'], json.loads(req['payload'])))
+
+  return jsonify(hueRequest(req['endpoint'], json.loads(req['payload']) if 'payload' in req else None))
 
 # Get all lights in a specific room
 def getLights(room_id):
@@ -62,22 +74,30 @@ def getLights(room_id):
   return lights_in_room
 
 # Get forecast from yr.no
-def getForecast():
+def getForecast(amount = 1):
   hueConf = getHueConf()
   weather = ET.parse(hueConf['yr_url'])
-  forecast = weather.find("forecast").find('tabular').find('time');
-  return {
-    'symbol': forecast.find('symbol').get('var'),
-    'precipitation': forecast.find('precipitation').get('value'),
-    'temperature': forecast.find('temperature').get('value'),
-    'wind': forecast.find('windSpeed').get('mps')
-  }
-  return {
-    'symbol': '04',
-    'precipitation': '1.2',
-    'temperature': '-6',
-    'wind': '1.7'
-  }
+  forecasts = weather.find("forecast").find('tabular');
+  ret = []
+
+  for forecast in forecasts.findall('time'):
+    timeObj = datetime.datetime.strptime(forecast.get('from'), '%Y-%m-%dT%H:%M:%S')
+    ret.append({
+      'time': timeObj.strftime('%H:%M'),
+      'symbol': forecast.find('symbol').get('var'),
+      'symbol_name': forecast.find('symbol').get('name'),
+      'precipitation': forecast.find('precipitation').get('value'),
+      'temperature': forecast.find('temperature').get('value'),
+      'wind': forecast.find('windSpeed').get('mps'),
+      'wind_dir': forecast.find('windDirection').get('code'),
+      'wind_name': forecast.find('windSpeed').get('name'),
+      'pressure': forecast.find('pressure').get('value')
+    })
+    print ret
+    if (len(ret) == amount):
+      return ret
+
+  return ret
 
 # Get groups
 def getGroups():
@@ -86,6 +106,17 @@ def getGroups():
   for groupId, group in hueGroups.items():
     group['id'] = groupId
     ret.append(group)
+  return ret
+
+# Get scenes
+def getScenes():
+  hueConf = getHueConf()
+  hueScenes = hueRequest('/scenes')
+  ret = []
+  for sceneId, scene in hueScenes.items():
+    if (scene['owner'] == hueConf['hue_username']):
+      scene['id'] = sceneId
+      ret.append(scene)
   return ret
 
 def getGroup(groupId):

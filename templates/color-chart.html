@@ -1,0 +1,10 @@
+<div class="hue-color-chart js-color-chart">
+{% set color_names = ['red', 'pink', 'purple', 'indigo', 'blue', 'teal', 'green', 'light-green', 'yellow', 'amber', 'orange', 'grey'] %}
+{% for i in [50,100,200,300,400,500,600,700,800,900] %}
+  <div class="row {{ color_name }} hue-color-chart__row">
+  {% for color_name in color_names %}
+    <div class="{{ color_name }}-{{ i }} hue-color-chart__tile"></div>
+  {% endfor %}
+  </div>
+{% endfor %}
+</div>

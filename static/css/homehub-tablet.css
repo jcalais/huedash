@@ -68,10 +68,6 @@ body {
   width: 100%;
 }
 
-.weather-tile {
-  padding-top: 10px;
-}
-
 .tile:hover {
   color: #fff;
   text-decoration: none;
@@ -91,12 +87,38 @@ body {
   font-size: 1.4em;
 }
 
+.weather-tile {
+  padding-top: 10px;
+}
+
 .weather-tile img {
   height: 100px;
 }
 
+.weather-col .tile {
+  height: 380px;
+  padding: 10px;
+}
+
 .weather-tile .description {
   font-size: 1.2em;
+}
+
+.weather-col .description {
+  font-size: 1em;
+}
+
+.weather-col img {
+  margin-bottom: 1em;
+  width: 100px;
+}
+
+.weather-tile .time {
+  font-size: 1.4em;
+}
+
+.weather-tile .verbose {
+  font-style: italic;
 }
 
 /* Small tiles */
@@ -132,4 +154,31 @@ body {
 .hue-big-slider .noUi-tooltip {
   left: 110%;
   right: auto;
+}
+
+.hue-color-chart {
+  display: none;
+  background-color: white;
+  border: 2px solid #000;
+  border-radius: 10px;
+  left: 50%;
+  margin-left: -320px;
+  padding: 1em 0;
+  position: absolute;
+  z-index: 10;
+  width: 642px;
+}
+
+.hue-color-chart__row {
+  padding: 0 2em;
+}
+
+/* Color chart */
+.hue-color-chart__tile {
+  height: 35px;
+  width: 50px;
+  display: block;
+  float: left;
+  margin: 0 1px 1px 0;
+  cursor: pointer;
 }

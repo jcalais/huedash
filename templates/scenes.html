@@ -1,5 +1,38 @@
-{% extends "base.html" %}
+{% extends "tabletbase.html" %}
 {% block content %}
-<div class="nav-tabs-custom js-hue-scenes js-hue-config" data-hue-user="{{ hue_username }}" data-hue-ip="{{ hue_ip }}">
+<div class="row">
+  <div class="col-sm-9 hue-col hue-left-col">
+    <div class="row hue-grid">
+     <div class="col-sm-4 hue-tile">
+        <a href="/tablet" class="tile bg-cat-1">
+          <span class="ion-ios-home ion"></span>
+          <h2>Tillbaka</h2>
+        </a>
+      </div>
+      <div class="col-sm-4 hue-tile">
+        {% if forecast %}
+        {% include "weather-tile.html" %}
+        {% endif %}
+      </div>
+      <div class="col-sm-4 hue-tile">
+        <a href="/tablet" class="tile bg-cat-1">
+          <span class="ion-calendar ion"></span>
+          <h2>Kalender</h2>
+        </a>
+      </div>
+    </div>
+    {% for scene_group in scenes|batch(3) %}
+    <div class="row hue-grid">
+      {% for scene in scene_group %}
+      <div class="col-sm-4 hue-tile hue-tile-sm">
+        <a href="#" class="tile bg-cat-off" data-id="{{ scene.id }}" data-type="scene">
+          <span class="ion-ios-lightbulb ion"></span>
+          <h2>{{ scene.name }}</h2>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
