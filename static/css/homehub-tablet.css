@@ -133,6 +133,12 @@ body {
   font-size: 3em;
 }
 
+.hue-right-col .hue-tile-sm .tile .ion  {
+  float: left;
+  margin-top: 0.3em;
+  margin-left: 0.5em;
+}
+
 .hue-tile-sm .tile h2 {
   font-size: 1.5em;
 }

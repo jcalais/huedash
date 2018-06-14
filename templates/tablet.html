@@ -44,10 +44,16 @@
   <div class="col-sm-3 hue-col hue-right-col">
     <div class="row">
       {% for sensor in sensors %}
-      <div class="col-sm-12 hue-tile" data-id="{{ sensor.id }}" data-type="sensor">
+      <div class="col-sm-12 hue-tile hue-tile-sm" data-id="{{ sensor.id }}" data-type="sensor">
         <a href="/tablet" class="tile bg-cat-2">
           <span class="ion-thermometer ion"></span>
-          <h2>{{ sensor.state.temperature/100 }}&deg;C</h2>
+          <h2>
+            {% if sensor.state.temperature %}
+            {{ sensor.state.temperature/100 }}&deg;C
+            {% else %}
+            n/a
+            {% endif %}
+          </h2>
           <span class="description">{{ sensor.name }}</span>
         </a>
       </div>
