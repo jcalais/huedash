@@ -5,7 +5,8 @@
     <div class="row hue-grid">
      <div class="col-sm-4 hue-tile">
         {% if forecast %}
-        {% include "weather-tile.html" %}
+          {% set forecast = forecast|first %}
+          {% include "weather-tile.html" %}
         {% endif %}
       </div>
       <div class="col-sm-4 hue-tile">

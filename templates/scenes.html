@@ -11,6 +11,7 @@
       </div>
       <div class="col-sm-4 hue-tile">
         {% if forecast %}
+        {% set forecast = forecast|first %}
         {% include "weather-tile.html" %}
         {% endif %}
       </div>

@@ -13,21 +13,19 @@ def index():
 
 @app.route("/tablet")
 def tablet():
-  forecast = getForecast()
   return render_template(
     'tablet.html', 
     sensors=getSensors('ZLLTemperature'),
     groups=getGroups(),
-    forecast=forecast[0]
+    forecast=getForecast(1)
   )
 
 @app.route("/scenes")
 def scenes():
-  forecast = getForecast()
   return render_template(
     'scenes.html', 
     scenes=getScenes(),
-    forecast=forecast[0]
+    forecast=getForecast(1)
   )
 
 @app.route("/weather")
@@ -76,7 +74,12 @@ def getLights(room_id):
 # Get forecast from yr.no
 def getForecast(amount = 1):
   hueConf = getHueConf()
-  weather = ET.parse(hueConf['yr_url'])
+
+  try:
+    weather = ET.parse(hueConf['yr_url'])
+  except:
+    return None
+
   forecasts = weather.find("forecast").find('tabular');
   ret = []
 
