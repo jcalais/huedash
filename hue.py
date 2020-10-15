@@ -96,7 +96,7 @@ def getForecast(amount = 1):
       'wind_name': forecast.find('windSpeed').get('name'),
       'pressure': forecast.find('pressure').get('value')
     })
-    print ret
+    print (ret)
     if (len(ret) == amount):
       return ret
 
