@@ -8,6 +8,20 @@ Using Python, Flask, Bootstrap 3, jQuery, noUiSlider, AdminLTE2 theme.
 
 !["Screenshot of temperature sensors"](http://i.imgur.com/nlANUY4.png "Temperature")
 
+## Getting started with Docker
+
+> docker build -t huedash .
+
+You can now run it with 
+
+>
+
+Or use the start script `./start.sh <port> <detached_mode>
+
+Example for running detached (in the background) on port 80:
+
+> ./start.sh 80 -d
+
 ## Getting started
 One prerequisite is having a conf.json file. For your convenience I have left mine in. It contains my super secret Hue App Id assigned by the Hue hub. I don't think there's much you can do to abuse it.
 
