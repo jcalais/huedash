@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  huedash:
+    build: .
+    ports:
+      - "80:80"
+

@@ -22,6 +22,10 @@ Example for running detached (in the background) on port 80:
 
 > ./start.sh 80 -d
 
+Or use docker-compose
+
+> docker-compose up -d
+
 ## Getting started
 One prerequisite is having a conf.json file. For your convenience I have left mine in. It contains my super secret Hue App Id assigned by the Hue hub. I don't think there's much you can do to abuse it.
 
