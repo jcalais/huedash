@@ -96,7 +96,7 @@ def getForecast(amount = 1):
       'wind_name': forecast.find('windSpeed').get('name'),
       'pressure': forecast.find('pressure').get('value')
     })
-    print ret
+    print (ret)
     if (len(ret) == amount):
       return ret
 
@@ -160,4 +160,4 @@ def getHueConf():
     }
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=80, debug=True)
+  app.run(host='0.0.0.0', port=8080, debug=True)

@@ -1,6 +1,6 @@
 {
-  "devicetype" : "myhue#raspberrypi jayjay",
-  "username": "hkdOmVS6foFF35dfFejEPnhKLWa-ZFDiPjz9gZjv",
-  "ip": "10.0.0.101",
-  "yr_url": "/home/pi/web/hue/varsel.xml"
+  "devicetype" : "huedash#pi",
+  "username": "DWhfcMKpDqnpkQdRo7vmGJ-EPTlbMZctXlTtJj6n",
+  "ip": "lights.jonandnic.com",
+  "yr_url": "/home/pi/huedash/varsel.xml"
 }

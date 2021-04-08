@@ -19,6 +19,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.0.0/nouislider.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/homehub.css') }}">
 
+  <style>
+        [class*="fa-home"]:before
+        {
+            content:url('static/img/home.png');
+        }
+	[class*="fa-lightbulb-o"]:before
+	{
+	    content:url('static/img/light.png');
+	}
+	[class*="fa-dashboard"]:before
+	{
+	    content:url('static/img/dashboard.png');
+	}
+	.main-header .sidebar-toggle:before {
+	    content: url('/static/img/menu.png');
+	}
+  </style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
