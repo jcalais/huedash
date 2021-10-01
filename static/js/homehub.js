@@ -214,7 +214,7 @@ function getHueApiBaseUrl() {
   var hue_user = getHueUser();
   var hue_ip = $('.js-hue-config').data('hue-ip');
   if (hue_user && hue_ip) {
-    return 'http://' + hue_ip + '/api/' + hue_user;
+    return 'https://' + hue_ip + '/api/' + hue_user;
   }
   return false;
 }
