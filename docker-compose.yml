@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  huedash:
+    build: .
+    ports:
+      - "443:443"
+    restart: always
+

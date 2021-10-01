@@ -96,7 +96,7 @@ def getForecast(amount = 1):
       'wind_name': forecast.find('windSpeed').get('name'),
       'pressure': forecast.find('pressure').get('value')
     })
-    print ret
+    print (ret)
     if (len(ret) == amount):
       return ret
 
@@ -140,7 +140,7 @@ def getSensors(sensorType):
 # Perform an arbitrary request against the hue api.
 def hueRequest(endpoint, payload = None):
   hueConf = getHueConf()
-  hueBaseUrl = 'http://' + hueConf['hue_ip'] + '/api/' + hueConf['hue_username']
+  hueBaseUrl = 'https://' + hueConf['hue_ip'] + '/api/' + hueConf['hue_username']
   hueRequestUrl = hueBaseUrl + endpoint
   if payload == None:
     response = requests.get(hueRequestUrl)
@@ -160,4 +160,4 @@ def getHueConf():
     }
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=80, debug=True)
+  app.run(host='0.0.0.0', port=443, debug=True, ssl_context='adhoc')
