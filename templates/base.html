@@ -19,6 +19,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.0.0/nouislider.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/homehub.css') }}">
 
+  <style>
+        [class*="fa-home"]:before
+        {
+            content:url('static/img/home.png');
+        }
+	[class*="fa-lightbulb-o"]:before
+	{
+	    content:url('/static/img/light.png');
+	}
+	[class*="fa-dashboard"]:before
+	{
+	    content:url('/static/img/dashboard.png');
+	}
+	.main-header .sidebar-toggle:before {
+	    content: url('/static/img/menu.png');
+	}
+	.ion-ios-lightbulb:before {
+	    content: url('/static/img/tinylight.png');
+	}
+  </style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -78,9 +99,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0
+      <small>Version 1.1</small>
     </div>
-    <strong>Copyright &copy; 2017 Joakim Calais</strong>. Released under the terms of the MIT license.
+    <small>Copyright &copy; 2017 Joakim Calais, MIT license.</small>
   </footer>
 </div>
   <!-- jQuery -->

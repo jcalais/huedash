@@ -16,25 +16,27 @@ $.fn.initHueGroups = function() {
 };
 
 $.fn.addRoom = function(roomId, room, lights) {
-  var $container = $(this);
-  var $ul = $(this).children('ul');
-  var $tabData = $(this).children('div.tab-content');
-  var lampSliders = [];
-  var isFirst = $ul.children('li').length === 0;
+  if (room.type == "Room" || (room.type == "LightGroup" && room.name.indexOf("$lights") == -1)) {
+    var $container = $(this);
+    var $ul = $(this).children('ul');
+    var $tabData = $(this).children('div.tab-content');
+    var lampSliders = [];
+    var isFirst = $ul.children('li').length === 0;
 
-  var roomState = room.state.any_on == true ? 'teal' : 'grey';
-  roomState = room.state.all_on == true ? 'yellow' : roomState;
+    var roomState = room.state.any_on == true ? 'teal' : 'grey';
+    roomState = room.state.all_on == true ? 'yellow' : roomState;
 
-  $ul.append('<li class="' + (isFirst ? ' active' : '') + '"><a href="#room' + roomId + '" data-toggle="tab"><span class="hidden-xs">' + room.name + '</span><span class="hidden-sm hidden-md hidden-lg">' + room.name.substr(0,4) + '</span> <span class="hidden-xs badge bg-' + roomState + '"><i class="ion ion-ios-lightbulb"></i></span></a></li>');
-  var $room = $('<div class="tab-pane box-body no-padding' + (isFirst ? ' active' : '') + '" id="room' + roomId + '" data-room-id="' + roomId + '"><table class="table"><tbody></tbody></table></div>');
-  $room.addLight(null, room);
-  $.each(room.lights, function(idx, lightId) {
-    $room.addLight(lightId, lights[lightId]);
-  });
-  $tabData.append($room);
-  $('tr', $room).each(function() {
-    $(this).addSlider();
-  });
+    $ul.append('<li class="' + (isFirst ? ' active' : '') + '"><a href="#room' + roomId + '" data-toggle="tab"><span class="hidden-xs">' + room.name + '</span><span class="hidden-sm hidden-md hidden-lg">' + room.name.substr(0,4) + '</span> <span class="hidden-xs badge bg-' + roomState + '"><i class="ion ion-ios-lightbulb"></i></span></a></li>');
+    var $room = $('<div class="tab-pane box-body no-padding' + (isFirst ? ' active' : '') + '" id="room' + roomId + '" data-room-id="' + roomId + '"><table class="table"><tbody></tbody></table></div>');
+    $room.addLight(null, room);
+    $.each(room.lights, function(idx, lightId) {
+      $room.addLight(lightId, lights[lightId]);
+    });
+    $tabData.append($room);
+    $('tr', $room).each(function() {
+      $(this).addSlider();
+    });
+  }
 };
 
 $.fn.addSlider = function() {
