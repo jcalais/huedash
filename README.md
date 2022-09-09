@@ -1,7 +1,7 @@
 # Huedash
 Philips Hue dashboard to be run on a Raspberry pi or similar.
 
-Using Python, Flask, Bootstrap 3, jQuery, noUiSlider, AdminLTE2 theme.
+Using Python2, Flask, Bootstrap 3, jQuery, noUiSlider, AdminLTE2 theme.
 
 ## Changelog
 2017-08-26: Added rudimentary Hue motion sensor support. This will show up as a temperature and battery percentage on the sensors page.

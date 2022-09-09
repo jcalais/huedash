@@ -1,0 +1,9 @@
+[Unit]
+Description=Hue Dash Python web service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/pi/huedash/start-hue
+
+[Install]
+WantedBy=multi-user.target
